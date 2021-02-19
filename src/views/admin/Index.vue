@@ -1,10 +1,16 @@
 <template>
-  <div>index</div>
+  <el-container>
+    <Header></Header>
+  </el-container>
 </template>
 
 <script>
+import Header from "../../components/admin/Header";
 export default {
-name: "Index"
+  name: "Index",
+  components: {Header},
+  comments: {Header}
+
 }
 </script>
 

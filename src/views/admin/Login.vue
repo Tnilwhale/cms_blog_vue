@@ -10,11 +10,8 @@
           <el-input aria-placeholder="请输入密码" v-model="form.password"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button style="width: 100%" type="primary" @click="submit">立即登录</el-button>
+          <el-button style="width: 100%" type="primary"  @click="submit">立即登录</el-button>
 <!--          <el-button>注册</el-button>-->
-        </el-form-item>
-        <el-form-item>
-          邵小毛嘟嘟嘟
         </el-form-item>
 
       </el-form>
@@ -35,17 +32,18 @@ export default {
         userName: [{required:true,message:'请输入用户名'}],
         password: [{required:true,message:'请输入密码'}]
       },
-      methods:{
-        submit(){
-          this.$refs['form'].validate(valid=>{
-            if(valid){
-              //执行登录操作
-              //执行页面跳转
-              this.$router.push('/index')
-            }
-          })
+
+    }
+  },
+  methods:{
+    submit(){
+      this.$refs['form'].validate(valid=>{
+        if(valid){
+          //执行登录操作
+          //执行页面跳转
+          this.$router.push('/index')
         }
-      }
+      })
     }
   }
 
