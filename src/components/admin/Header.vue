@@ -20,7 +20,7 @@
                   <img src="../../assets/image/user_headsculpture.jpg" >
                 </td>
                 <td >admin</td>
-                <td valign="top">
+                <td valign="middle">
                   <el-icon class="el-icon-caret-bottom"></el-icon>
                 </td>
               </tr>
@@ -45,10 +45,6 @@ name: "Header"
 </script>
 
 <style scoped>
-.header{
-  background-color: cornflowerblue;
-  width: 100%;
-}
 .logo{
   height: 60px;
   padding-left: 10px;

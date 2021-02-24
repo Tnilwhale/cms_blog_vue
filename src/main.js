@@ -5,6 +5,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import store from "./store";
 import router from './router';
+import "./assets/css/admin.css"
 
 /*
  * @Author shaokexiang
