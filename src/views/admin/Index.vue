@@ -52,6 +52,12 @@ export default {
   bottom: 0px;
   left: 210px;
 }
+.el-breadcrumb{
+  height: 45px;
+  line-height: 45px;
+  padding: 0px;
+  margin: 0px;
+}
 
 
 </style>

@@ -40,6 +40,7 @@ export default {
       this.$refs['form'].validate(valid=>{
         if(valid){
           //执行登录操作
+          this.$store.dispatch('login',this.form)
           //执行页面跳转
           this.$router.push('/index')
         }

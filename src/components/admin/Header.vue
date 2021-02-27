@@ -11,7 +11,7 @@
           </tr>
         </table>
       </el-col>
-      <el-col :span="4">
+      <el-col :span="4" align="right">
         <el-dropdown style="margin-top: 20px">
           <el-link class="user" :underline="false">
             <table border="0" >

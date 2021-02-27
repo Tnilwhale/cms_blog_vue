@@ -14,7 +14,7 @@
         </template>
         <el-menu-item-group>
           <el-menu-item index="/user">用户管理</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
+          <el-menu-item index="/tag">标签管理</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
 
