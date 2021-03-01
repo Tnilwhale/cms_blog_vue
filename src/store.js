@@ -26,9 +26,12 @@ const store = new Vuex.Store({
       return new Promise((resolve,reject)=> {
         login(user.userName,user.password).then(data=>{
           //处理 token写入vuex、localStorage
-          console.log(data)
-          console.log(data)
-          console.log(data)
+          // console.log(data)
+          // console.log(data)
+          // console.log(data)
+          // commit('setToken',data.data.token)
+          // console.log(data.data.user)
+          token.setUser(data.data.user)
           commit('setToken',data.data.token)
           resolve()
         }).catch(error=>{

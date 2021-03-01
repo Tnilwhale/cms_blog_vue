@@ -7,7 +7,7 @@
           <el-input aria-placeholder="请输入用户名" v-model="form.userName"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input aria-placeholder="请输入密码" v-model="form.password"></el-input>
+          <el-input aria-placeholder="请输入密码" type="password" v-model="form.password"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button style="width: 100%" type="primary"  @click="submit">立即登录</el-button>
@@ -25,8 +25,8 @@ export default {
   data(){
     return{
       form:{
-        userName:'',
-        password:'',
+        userName:'skx1',
+        password:'1',
       },
       rules:{
         userName: [{required:true,message:'请输入用户名'}],
@@ -40,9 +40,14 @@ export default {
       this.$refs['form'].validate(valid=>{
         if(valid){
           //执行登录操作
-          this.$store.dispatch('login',this.form)
+          this.$store.dispatch('login',this.form).then(()=>{
+            // console.log(data)
+            this.$router.push('/index')
+          }).catch(error=>{
+            this.$message.error(error)
+          })
           //执行页面跳转
-          this.$router.push('/index')
+
         }
       })
     }
