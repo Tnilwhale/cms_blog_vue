@@ -17,18 +17,33 @@
         :data="tableData"
         style="width: 100%">
       <el-table-column
-          prop="date"
-          label="日期"
+          prop="id"
+          label="ID"
           width="180">
       </el-table-column>
       <el-table-column
-          prop="name"
-          label="姓名"
+          prop="userName"
+          label="用户名"
           width="180">
       </el-table-column>
       <el-table-column
-          prop="address"
-          label="地址">
+          prop="nickName"
+          label="昵称"
+          width="180">
+      </el-table-column>
+      <el-table-column
+          prop="email"
+          label="邮箱"
+          width="180">
+      </el-table-column>
+      <el-table-column
+          prop="createDate"
+          label="创建时间"
+          width="180">
+      </el-table-column>
+      <el-table-column
+          prop="status"
+          label="状态">
       </el-table-column>
       <el-table-column
           align="center"
@@ -49,20 +64,35 @@
 </template>
 
 <script>
+
+import {query} from "@/api/user";
+
 export default {
   name: "Index",
   data() {
     return {
       tableData: [
-        {
-          date: '2021-02-20',
-          name: '邵小毛',
-          address: '安徽省铜陵市'
-        },
+        // {
+        //   date: '2021-02-20',
+        //   name: '邵小毛',
+        //   address: '安徽省铜陵市'
+        // },
       ],
-      queryForm:{
-        name:''
+      queryForm: {
+        name: ''
       }
+    }
+  },
+  mounted(){
+    this.list({})
+  },
+  methods:{
+    list(param){
+      query(param).then(data=>{
+        console.log(data)
+      }).catch(error=>{
+        this.$message.error(error);
+      })
     }
   }
 }

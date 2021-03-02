@@ -10,7 +10,7 @@
           <el-input aria-placeholder="请输入密码" type="password" v-model="form.password"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button style="width: 100%" type="primary"  @click="submit">立即登录</el-button>
+          <el-button style="width: 100%" type="primary" :loading="loading" @click="submit">立即登录</el-button>
 <!--          <el-button>注册</el-button>-->
         </el-form-item>
 
@@ -28,6 +28,7 @@ export default {
         userName:'skx1',
         password:'1',
       },
+      loading:false,
       rules:{
         userName: [{required:true,message:'请输入用户名'}],
         password: [{required:true,message:'请输入密码'}]
@@ -40,10 +41,12 @@ export default {
       this.$refs['form'].validate(valid=>{
         if(valid){
           //执行登录操作
+          this.loading = true
           this.$store.dispatch('login',this.form).then(()=>{
             // console.log(data)
             this.$router.push('/index')
           }).catch(error=>{
+            this.loading = false
             this.$message.error(error)
           })
           //执行页面跳转

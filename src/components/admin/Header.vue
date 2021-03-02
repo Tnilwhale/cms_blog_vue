@@ -19,7 +19,7 @@
                 <td>
                   <img src="../../assets/image/user_headsculpture.jpg" >
                 </td>
-                <td >admin</td>
+                <td >{{userName}}</td>
                 <td valign="middle">
                   <el-icon class="el-icon-caret-bottom"></el-icon>
                 </td>
@@ -39,8 +39,15 @@
 </template>
 
 <script>
+import token from "../../token";
+
 export default {
-name: "Header"
+ name: "Header",
+ data(){
+   return {
+     userName:token.getUser().userName
+   }
+ }
 }
 </script>
 
