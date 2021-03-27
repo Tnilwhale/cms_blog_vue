@@ -4,7 +4,7 @@ let token = {
     localStorage.setItem("token",token)
   },
   get(){
-    localStorage.getItem("token")
+    return localStorage.getItem("token")
   },
   setUser(user){
     localStorage.setItem("user",JSON.stringify(user))

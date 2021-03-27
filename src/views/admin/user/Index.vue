@@ -3,10 +3,13 @@
     <div>
       <el-form :inline="true" :model="queryForm" class="queryForm">
         <el-form-item>
-          <el-input v-model="queryForm.name" placeholder="按姓名查询"></el-input>
+          <el-input v-model="queryForm.userName" placeholder="按用户名查询"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button icon="el-icon-search" type="danger">查询</el-button>
+          <el-input v-model="queryForm.nickName" placeholder="按昵称查询"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button icon="el-icon-search" @click="search" type="danger">查询</el-button>
         </el-form-item>
         <el-form-item>
           <el-button icon="el-icon-plus" type="primary">新增</el-button>
@@ -49,23 +52,25 @@
           align="center"
           width="150px"
           label="操作">
-        <template>
+        <template slot-scope="scope">
           <el-link :underline="false" type="primary" class="el-icon-edit-outline">编辑</el-link>
-          <el-link :underline="false" type="danger" class="el-icon-delete">删除</el-link>
+          <el-link @click="del(scope.row)" :underline="false" type="danger" class="el-icon-delete">删除</el-link>
         </template>
       </el-table-column>
     </el-table>
     <el-pagination
         background
         layout="total,prev, pager, next,jumper"
-        :total="1000">
+        @current-change="handleCurrentChange"
+        :current-page="pageNo"
+        :total="total">
     </el-pagination>
   </div>
 </template>
 
 <script>
 
-import {query} from "@/api/user";
+import {del, query} from "../../../api/user";
 
 export default {
   name: "Index",
@@ -79,20 +84,52 @@ export default {
         // },
       ],
       queryForm: {
-        name: ''
-      }
+        userName: '',
+        nickName: '',
+      },
+      total:0,
+      pageNo:1
     }
   },
   mounted(){
-    this.list({})
+    this.list({"page":this.pageNo})
   },
   methods:{
+    handleCurrentChange(val){
+      let param = this.queryForm;
+      this.pageNo = val;
+      param.page = this.pageNo;
+      this.list(param)
+    },
+    search(){
+      let param = this.queryForm;
+      this.pageNo = 1;
+      param.page=this.pageNo;
+      this.list(param);
+
+    },
     list(param){
       query(param).then(data=>{
-        console.log(data)
+        // console.log(data)
+        this.tableData = data.list
+        this.total = data.total
       }).catch(error=>{
         this.$message.error(error);
       })
+    },
+    del(row){
+        this.$confirm("确定要删除么？","提示").then(()=>{
+          del(row.id).then(data=>{
+            this.$message.success(data.msg)
+            let param = this.queryForm;
+            param.page=this.pageNo;
+            this.list(param);
+          }).catch(error=>{
+            this.$message.error(error)
+          })
+        }).catch(error=>{
+
+        })
     }
   }
 }

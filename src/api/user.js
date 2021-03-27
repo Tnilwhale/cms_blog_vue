@@ -13,7 +13,7 @@ export function create(user){
 }
 
 export function del(id){
-  return axiosInstance.post('user/delete',{id:id})
+  return axiosInstance.post('user/delete?id='+id,)
 }
 
 export function update(user){
