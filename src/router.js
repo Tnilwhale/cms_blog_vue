@@ -8,6 +8,7 @@ import Channel from "./views/admin/channel/Index";
 import FriendLink from "./views/admin/friendlink/Index";
 import Article from "./views/admin/article/Index";
 import Comment from "./views/admin/comment/Index";
+import Info from "@/views/admin/user/Info";
 // import Info from "./views/admin/user/Info";
 // import token from "./token";
 // import ChannelAdd from "./views/admin/channel/Add";
@@ -36,6 +37,11 @@ const router = new VueRouter({
       name:'index',
       component:Index,
       children:[
+        {
+          path:'/info',
+          name:'info',
+          component:Info
+        },
         {
           path:'/user',
           name:'user',

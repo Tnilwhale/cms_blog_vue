@@ -12,7 +12,7 @@
           <el-button icon="el-icon-search" @click="search" type="danger">查询</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button icon="el-icon-plus" type="primary">新增</el-button>
+          <el-button icon="el-icon-plus" @click="add" type="primary">新增</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -53,7 +53,7 @@
           width="150px"
           label="操作">
         <template slot-scope="scope">
-          <el-link :underline="false" type="primary" class="el-icon-edit-outline">编辑</el-link>
+          <el-link  @click="edit(scope.row)" :underline="false" type="primary" class="el-icon-edit-outline">编辑</el-link>
           <el-link @click="del(scope.row)" :underline="false" type="danger" class="el-icon-delete">删除</el-link>
         </template>
       </el-table-column>
@@ -65,15 +65,26 @@
         :current-page="pageNo"
         :total="total">
     </el-pagination>
+
+    <el-dialog :visible.sync="addVisible" v-if="addVisible" :modal="true" :close-on-click-modal="false">
+      <Add @after="search" @hideDialog="hidden"></Add>
+    </el-dialog>
+    <el-dialog :visible.sync="editVisible" v-if="editVisible" :modal="true" :close-on-click-modal="false">
+      <Edit @after="search" :data="formData" @hideDialog="hidden"></Edit>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 
 import {del, query} from "../../../api/user";
-
+import Add from './Add'
+import Edit from './Edit'
 export default {
   name: "Index",
+  components:{
+    Add,Edit
+  },
   data() {
     return {
       tableData: [
@@ -87,8 +98,11 @@ export default {
         userName: '',
         nickName: '',
       },
+      formData:{},
       total:0,
-      pageNo:1
+      pageNo:1,
+      addVisible:false,
+      editVisible:false
     }
   },
   mounted(){
@@ -125,12 +139,25 @@ export default {
             param.page=this.pageNo;
             this.list(param);
           }).catch(error=>{
+            console.log(error)
             this.$message.error(error)
           })
         }).catch(error=>{
 
         })
+    },
+    add(){
+      this.addVisible = true
+    },
+    edit(row){
+      this.editVisible = true
+      this.formData= row;
+    },
+    hidden(){
+      this.addVisible = false
+      this.editVisible = false
     }
+
   }
 }
 </script>

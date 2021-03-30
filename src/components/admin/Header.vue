@@ -12,7 +12,7 @@
         </table>
       </el-col>
       <el-col :span="4" align="right">
-        <el-dropdown style="margin-top: 20px">
+        <el-dropdown trigger="click" @command="handleCommand" style="margin-top: 20px">
           <el-link class="user" :underline="false">
             <table border="0" >
               <tr>
@@ -27,9 +27,10 @@
             </table>
           </el-link>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>个人信息</el-dropdown-item>
-            <el-dropdown-item>修改密码</el-dropdown-item>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <el-dropdown-item command="index">网站首页</el-dropdown-item>
+            <el-dropdown-item command="info">个人信息</el-dropdown-item>
+            <el-dropdown-item command="password">修改密码</el-dropdown-item>
+            <el-dropdown-item command="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-col>
@@ -47,7 +48,23 @@ export default {
    return {
      userName:token.getUser().userName
    }
- }
+ },
+  methods:{
+   handleCommand(command){
+      if (command == 'info'){
+        this.$router.push('/info');
+      }
+      if (command == 'index'){
+        this.$router.push('/index');
+      }
+     if (command == 'password'){
+       this.$router.push('/password');
+     }
+     if (command == 'logout'){
+       this.$router.push('/logout');
+     }
+   }
+  }
 }
 </script>
 
