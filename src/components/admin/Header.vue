@@ -17,7 +17,7 @@
             <table border="0" >
               <tr>
                 <td>
-                  <img src="../../assets/image/user_headsculpture.jpg" >
+                  <img :src="avatar" >
                 </td>
                 <td >{{userName}}</td>
                 <td valign="middle">
@@ -46,7 +46,8 @@ export default {
  name: "Header",
  data(){
    return {
-     userName:token.getUser().userName
+     userName:token.getUser().userName,
+     avatar:token.getUser().avatar,
    }
  },
   methods:{
@@ -61,7 +62,9 @@ export default {
        this.$router.push('/password');
      }
      if (command == 'logout'){
-       this.$router.push('/logout');
+       //不可直接转login，需清除token
+       this.$store.commit('logout')
+       this.$router.push('/login');
      }
    }
   }

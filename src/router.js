@@ -9,6 +9,7 @@ import FriendLink from "./views/admin/friendlink/Index";
 import Article from "./views/admin/article/Index";
 import Comment from "./views/admin/comment/Index";
 import Info from "@/views/admin/user/Info";
+import token from "@/token";
 // import Info from "./views/admin/user/Info";
 // import token from "./token";
 // import ChannelAdd from "./views/admin/channel/Add";
@@ -75,6 +76,18 @@ const router = new VueRouter({
       ]
     }
   ]
+})
+//相当于过滤器里的链
+router.beforeEach((to,from,next)=>{
+  if(token.getUser()){
+    next()
+  }else {
+    if(to.path === '/login'){
+      next()
+    }else {
+      next('/login')
+    }
+  }
 })
 
 export default router

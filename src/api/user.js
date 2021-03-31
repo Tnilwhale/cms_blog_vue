@@ -27,3 +27,8 @@ export function query(user){
 export function detail(user){
   return axiosInstance.post('user/detail',{id:id})
 }
+
+
+export function upload(formData){
+  return axiosInstance.post('user/upload',formData)
+}

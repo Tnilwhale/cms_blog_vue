@@ -56,6 +56,10 @@ export default {
         if(valid){
           this.loading = true
           update(this.defForm).then(data=>{
+            console.log(data)
+            console.log(data)
+            console.log(data)
+
             this.loading = false
             this.$message.success(data.msg)
             //将用户的最新信息写入localStorage
@@ -77,7 +81,7 @@ export default {
         this.$message.error(error)
       })
     },
-    //上传之前的验证
+    //上传之前的验证，待优化
     beforeAvatarUpload(file){
       const isIMAGE = (file.type === 'image/jpeg') ||  (file.type === 'image/jpg') || (file.type ==='image/png')
       const isLt2M = file.size / 1024 / 1024 < 2
