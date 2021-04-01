@@ -10,6 +10,8 @@ import Article from "./views/admin/article/Index";
 import Comment from "./views/admin/comment/Index";
 import Info from "@/views/admin/user/Info";
 import token from "@/token";
+import ChannelAdd from "@/views/admin/channel/Add";
+import ChannelEdit from "@/views/admin/channel/Edit";
 // import Info from "./views/admin/user/Info";
 // import token from "./token";
 // import ChannelAdd from "./views/admin/channel/Add";
@@ -57,6 +59,16 @@ const router = new VueRouter({
           path:'/channel',
           name:'channel',
           component:Channel
+        },
+        {
+          path:'/channel_add',
+          name:'channel_add',
+          component:ChannelAdd
+        },
+        {
+          path:'/channel_edit',
+          name:'channel_edit',
+          component:ChannelEdit
         },
         {
           path:'/article',

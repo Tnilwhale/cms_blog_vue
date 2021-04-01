@@ -55,7 +55,7 @@ export default {
     }
   },
   created() {
-    this.defForm = this.data
+    this.defForm = JSON.parse(JSON.stringify(this.data))//子组件和父组件不可用同一个内存地址
   },
   methods:{
     submitForm(form){
