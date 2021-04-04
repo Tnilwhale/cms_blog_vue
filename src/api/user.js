@@ -30,5 +30,5 @@ export function detail(user){
 
 
 export function upload(formData){
-  return axiosInstance.post('user/upload',formData)
+  return axiosInstance.post('uploadFile',formData)
 }

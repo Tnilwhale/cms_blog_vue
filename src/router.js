@@ -12,14 +12,10 @@ import Info from "@/views/admin/user/Info";
 import token from "@/token";
 import ChannelAdd from "@/views/admin/channel/Add";
 import ChannelEdit from "@/views/admin/channel/Edit";
-// import Info from "./views/admin/user/Info";
-// import token from "./token";
-// import ChannelAdd from "./views/admin/channel/Add";
-// import ChannelEdit from "./views/admin/channel/Edit";
-// import ArticleAdd from "./views/admin/article/Add";
-// import ArticleEdit from "./views/admin/article/Edit";
-// import FriendAdd from "./views/admin/friendlink/Add";
-// import FriendEdit from "./views/admin/friendlink/Edit";
+import ArticleAdd from "./views/admin/article/Add";
+import ArticleEdit from "./views/admin/article/Edit";
+import FriendAdd from "./views/admin/friendlink/Add";
+import FriendEdit from "./views/admin/friendlink/Edit";
 // import FIndex from './views/front/Index'
 // import List from './views/front/List'
 // import Detail from './views/front/Detail'
@@ -76,9 +72,30 @@ const router = new VueRouter({
           component:Article
         },
         {
+          path:'/article_add',
+          name:'article_add',
+          component:ArticleAdd
+        },
+        {
+          path:'/article_dit',
+          name:'article_edit',
+          component:ArticleEdit
+        },
+
+        {
           path:'/friendlink',
           name:'friendlink',
           component:FriendLink
+        },
+        {
+          path:'/friend_add',
+          name:'friend_add',
+          component:FriendAdd
+        },
+        {
+          path:'/friend_edit',
+          name:'friend_edit',
+          component:FriendEdit
         },
         {
           path:'/comment',
