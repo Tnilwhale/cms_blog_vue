@@ -5,7 +5,7 @@
         <table border="0" class="logo">
           <tr>
             <td>
-              <img src="../../assets/image/logo.png">
+              <img src="../../assets/images/logo.png">
             </td>
             <td>邵小毛的个人博客后台</td>
           </tr>

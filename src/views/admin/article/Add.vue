@@ -200,7 +200,7 @@
       },
       //上传之前的验证
       beforeAvatarUpload(file){
-        const isIMAGE = (file.type === 'image/jpeg') ||  (file.type === 'image/jpg') || (file.type ==='image/png')
+        const isIMAGE = (file.type === 'images/jpeg') ||  (file.type === 'images/jpg') || (file.type ==='images/png')
         const isLt2M = file.size / 1024 / 1024 < 2
         if (!isIMAGE) {
           this.$message.error('上传文件只能是图片格式!')
