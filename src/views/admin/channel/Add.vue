@@ -64,9 +64,8 @@
   </div>
 </template>
 <script>
-  //https://vue-treeselect.js.org  npm install --save @riophae/vue-treeselect
-  //https://www.npmjs.com/package/vue-markdown-editor  npm i vue-markdown-editor
-  //code-farmer-i/vue-markdown-editor npm i @kangc/v-md-editor -S
+  //https://vue-treeselect.js.org
+  //https://www.npmjs.com/package/vue-markdown-editor
   // import the component
   import Treeselect from '@riophae/vue-treeselect'
   // import the styles
@@ -144,7 +143,7 @@
       },
       //上传之前的验证
       beforeAvatarUpload(file){
-        const isIMAGE = (file.type === 'images/jpeg') ||  (file.type === 'images/jpg') || (file.type ==='images/png')
+        const isIMAGE = (file.type === 'image/jpeg') ||  (file.type === 'image/jpg') || (file.type ==='image/png')
         const isLt2M = file.size / 1024 / 1024 < 2
         if (!isIMAGE) {
           this.$message.error('上传文件只能是图片格式!')

@@ -63,7 +63,7 @@ export default {
 .login-page{
   height: 100%;
   /*background-color: aquamarine;*/
-  background: url("../../assets/image/login_bg.jpg") no-repeat;
+  background: url("../../assets/images/login_bg.jpg") no-repeat;
   background-size: cover;
 }
 .login-page-bg{

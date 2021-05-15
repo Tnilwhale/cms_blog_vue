@@ -128,15 +128,16 @@
       detail(id).then(data=>{
 
         this.defForm = data.data
+        console.log(this.defForm)
         if(!this.defForm.attachmentList){
           this.defForm.attachmentList= []
         }
         if(!this.defForm.selectTagList){
           this.defForm.selectTagList= []
         }
-        if(!data.data.content){
+        /*if(!data.data.content){
           this.defForm.content=''
-        }
+        }*/
         if(this.defForm.commentStatus != 1){
           this.defForm.commentStatus= true
         }
@@ -222,7 +223,7 @@
       },
       //上传之前的验证
       beforeAvatarUpload(file){
-        const isIMAGE = (file.type === 'images/jpeg') ||  (file.type === 'images/jpg') || (file.type ==='images/png')
+        const isIMAGE = (file.type === 'image/jpeg') ||  (file.type === 'image/jpg') || (file.type ==='image/png')
         const isLt2M = file.size / 1024 / 1024 < 2
         if (!isIMAGE) {
           this.$message.error('上传文件只能是图片格式!')

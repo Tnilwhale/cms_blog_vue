@@ -18,18 +18,34 @@
           </li>
         </ul>
       </nav>
+      <div class="searchico">
+        <router-link  to="/index" v-if="loginState">管理中心</router-link>
+        <router-link  to="/article_add" v-if="loginState">发帖</router-link>
+        <router-link v-if="!loginState" to="/login">登录</router-link>
+        <router-link v-if="!loginState" to="/reg">注册</router-link>
+      </div>
     </div>
   </header>
 </template>
 
 <script>
   import {queryByPos} from "../../api/font"
+  import token from "@/token";
   export default {
     name: "FHeader",
     data(){
       return {
         channels:[],
       }
+    },
+    computed:{
+      loginState(){
+        if(token.get()){
+          return true;
+        }else{
+          return false;
+        }
+      },
     },
     mounted() {
       queryByPos('a').then(data=>{
@@ -38,6 +54,15 @@
       }).catch(error=>{
 
       })
+    },
+    methods:{
+      command(index){
+        if(index == 'logout'){
+          //退出登录-->登录页面
+          this.$store.commit('logout')
+          this.$router.push("/login");
+        }
+      }
     }
   }
 </script>

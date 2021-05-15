@@ -8,9 +8,9 @@ const axiosInstance = axios.create({
 
 // 添加请求拦截器
 axiosInstance.interceptors.request.use(config => {
-  console.log(store.state.token)
-  console.log(store.state.token)
-  console.log(store.state.token)
+  // console.log(store.state.token)
+  // console.log(store.state.token)
+  // console.log(store.state.token)
   if (store.state.token){
     config.headers['token'] = store.state.token
   }
@@ -27,7 +27,9 @@ axiosInstance.interceptors.response.use(response =>{
   //获取后端返回的对象
   if(response.headers['token']){
     let token = response.headers['token']
-    store.commit('setToken',token)
+    if (token){
+      store.commit('setToken',token)
+    }
   }
   const res = response.data;
   if(response.status == 200){

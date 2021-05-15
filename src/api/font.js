@@ -25,6 +25,15 @@ export function get(id) {
 export function getNew() {
   return axiosInstance.get('f/article/getList')
 }
+
+/**
+ * 获取首页文章最新列表
+ * @returns {Promise<AxiosResponse<any>>}
+ */
+export function getNewList(data) {
+  return axiosInstance.post('f/article/getNew',data)
+}
+
 /**
  * 获取文章列表 ByChannelId
  * @param channelId
@@ -32,6 +41,10 @@ export function getNew() {
  */
 export function getArticlesByChannelId(channelId) {
   return axiosInstance.get('f/article/getList?channelId='+channelId)
+}
+
+export function getArticlesByChannelId2(data) {
+  return axiosInstance.post('f/article/getNew',data)
 }
 
 /**
@@ -59,4 +72,13 @@ export function getUp() {
  */
 export function getArticle(id) {
   return axiosInstance.get('f/article/get?id='+id);
+}
+
+
+export function reg(user) {
+  return axiosInstance.post('f/user/reg',user)
+}
+
+export function comment_query(articleId) {
+  return axiosInstance.get('f/comment/comment_query?articleId='+articleId)
 }

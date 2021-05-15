@@ -21,17 +21,21 @@
       <el-table-column
           prop="author"
           label="评论者">
+        <template slot-scope="scope">
+            <span>{{scope.row.user.userName}}</span>
+        </template>
       </el-table-column>
-      <el-table-column
+     <!-- <el-table-column
           prop="email"
           label="邮箱">
-      </el-table-column>
+      </el-table-column>-->
       <el-table-column
           prop="createDate"
           label="评论时间">
       </el-table-column>
       <el-table-column
           prop="content"
+          show-overflow-tooltip
           label="内容">
       </el-table-column>
       <el-table-column

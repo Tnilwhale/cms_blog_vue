@@ -1,6 +1,6 @@
 <template>
   <div class="whitebg notice">
-    <h2 class="htitle">{{channels.name}}</h2>
+    <h2 class="htitle">{{channels==null?"":channels.name}}</h2>
     <ul>
       <li v-for="(item,index) in articles.slice(0,4)" :key="index">
         <router-link :to='"/detail/"+item.id' target="_blank">{{item.title}}</router-link>

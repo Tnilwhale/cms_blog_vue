@@ -16,6 +16,31 @@
             </div>-->
           </div>
         </div>
+
+        <div class="whitebg lanmu">
+          <h1>评论</h1>
+          <div class="com" v-for="(item,index) in comments" :key="index">
+            <p style="float:left;width: 60px;">
+              <img v-if="item.user && item.user.avatar" :src="item.user.avatar" class="author">
+              <img v-else src="../../assets/images/avatar.png" class="author">
+            </p>
+            <p style="float:right;width: 760px;">
+              <span style="font-size: 12px;">{{item.createDate}}</span>
+              <br/>
+              {{item.content}}
+            </p>
+          </div>
+          <p>
+            <el-form ref="commentForm" :model="commentForm" style="width: 100%;padding: 10px;">
+              <el-form-item prop="content" align="left">
+                <el-input type="textarea" placeholder="评论输入..." style="font-size: 12px;" rows="4" v-model.trim="commentForm.content"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" style="width:20%;" :loading="loading" @click="submitForm">提交评论</el-button>
+              </el-form-item>
+            </el-form>
+          </p>
+        </div>
       </div>
       <div class="rbox">
         <FOrder></FOrder>
@@ -37,7 +62,9 @@
   import FriendLink from "./FriendLink"
   import Footer from "./Footer"
   import FTag from "./FTag"
-  import {getArticle} from "../../api/font";
+  import {getArticle,comment_query} from "../../api/font";
+  import {create} from "../../api/comment";
+  import token from "../../token";
 
   export default {
     name: "Index",
@@ -47,23 +74,67 @@
     data(){
       return{
         article:{},
+        comments:[],
+        loading:false,
+        commentForm:{
+          content:'',
+        },
       }
     },
     created() {
       getArticle(this.$route.params.id).then(data=>{
         this.article = data.data
-        console.log(this.article)
-        console.log(this.article)
-        console.log(this.article)
+        this.articleId = this.article.id
       })
+      this.query(this.$route.params.id);
     },
     beforeRouteUpdate(to, from, next){
       console.log(to.params)
       next()
+    },
+    methods:{
+      query(articleId){
+        comment_query(articleId).then(data=>{
+          this.comments = data.data
+        })
+      },
+      submitForm(){
+        if(!token.get()){
+          this.$message.warning('请先登录')
+          return;
+        }
+        if(this.commentForm.content==''){
+          this.$message.warning('评论不能为空')
+          return;
+        }
+        this.loading = true
+        this.commentForm.articleId=this.article.id
+        create(this.commentForm).then(res=>{
+          this.loading = false
+          this.$message.success(res.msg)
+          this.commentForm.content='';
+          this.query(res.data.articleId);
+        }).catch(error=>{
+          this.loading = false
+          console.log(error);
+        })
+      }
     }
   }
 </script>
 
 <style scoped>
-
+.com{
+  margin: 10px;
+  font-size: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted #cccccc;
+  display: inline-block;
+}
+.author{
+  border-radius: 20px;
+  border: 1px solid #cccccc;
+  height: 40px;
+  width: 40px;
+}
 </style>

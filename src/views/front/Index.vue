@@ -6,7 +6,7 @@
         <FSwiper></FSwiper>
         <HeadLine></HeadLine>
         <FTab></FTab>
-        <FNew :articles="articles"></FNew>
+        <FNew></FNew>
       </div>
       <div class="rbox">
         <FMe></FMe>
@@ -43,13 +43,11 @@
     },
     data(){
       return{
-        articles:[],
+
       }
     },
     mounted(){
-      getNew().then(data=>{
-        this.articles = data.list
-      });
+
     }
   }
 </script>
